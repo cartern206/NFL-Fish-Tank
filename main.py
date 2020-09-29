@@ -62,7 +62,7 @@ while True:
      #array 
         x = 0
         while x < 2:
-            if teams[song["competitions"][0]["competitors"][x]["team"]["shortDisplayName"]][1]  < int(song["competitions"][0]["competitors"][x]["score"]):
+            if teams[song["competitions"][0]["competitors"][x]["team"]["shortDisplayName"]][1] + 1  < int(song["competitions"][0]["competitors"][x]["score"]):
                 i=2
                 while i < 3:
                     print (song["competitions"][0]["competitors"][x]["team"]["shortDisplayName"])
