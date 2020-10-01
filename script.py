@@ -62,10 +62,10 @@ while True:
      #array 
         if teams[song["competitions"][0]["competitors"][1]["team"]["shortDisplayName"]][1] -1 < int(song["competitions"][0]["competitors"][1]["score"]):
             i=0
-            while i < 3:
+            while i < 4:
                 pixels.fill((0, 0, 0))
                 pixels.show()
-                pixels.fill(teams[song["competitions"][0]["competitors"][1]["team"]["shortDisplayName"]][0])
+                pixels.fill(teams[song["competitions"][0]["competitors"][1]["team"]["shortDisplayName"]][i%2])
                 pixels.show()
                 time.sleep(.7)
                 pixels.fill((0, 0, 0))
