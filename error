@@ -1,0 +1,61 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/contrib/pyopenssl.py", line 453, in wrap_socket
+    cnx.do_handshake()
+  File "/usr/lib/python3/dist-packages/OpenSSL/SSL.py", line 1915, in do_handshake
+    self._raise_ssl_error(self._ssl, result)
+  File "/usr/lib/python3/dist-packages/OpenSSL/SSL.py", line 1647, in _raise_ssl_error
+    _raise_current_error()
+  File "/usr/lib/python3/dist-packages/OpenSSL/_util.py", line 54, in exception_from_error_queue
+    raise exception_type(errors)
+OpenSSL.SSL.Error: [('SSL routines', 'ssl3_read_bytes', 'tlsv1 alert internal error')]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 343, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 841, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 344, in connect
+    ssl_context=context)
+  File "/usr/lib/python3/dist-packages/urllib3/util/ssl_.py", line 344, in ssl_wrap_socket
+    return context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/lib/python3/dist-packages/urllib3/contrib/pyopenssl.py", line 459, in wrap_socket
+    raise ssl.SSLError('bad handshake: %r' % e)
+ssl.SSLError: ("bad handshake: Error([('SSL routines', 'ssl3_read_bytes', 'tlsv1 alert internal error')])",)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='site.api.espn.com', port=443): Max retries exceeded with url: /apis/site/v2/sports/football/nfl/scoreboard (Caused by SSLError(SSLError("bad handshake: Error([('SSL routines', 'ssl3_read_bytes', 'tlsv1 alert internal error')])")))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "nfl.py", line 61, in <module>
+    response = json.loads(requests.get(url).text)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 514, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='site.api.espn.com', port=443): Max retries exceeded with url: /apis/site/v2/sports/football/nfl/scoreboard (Caused by SSLError(SSLError("bad handshake: Error([('SSL routines', 'ssl3_read_bytes', 'tlsv1 alert internal error')])")))
+pi@raspberrypi:~ $ sudo python3 nfl.py
+Jets
+7
+Broncos
+10
+
