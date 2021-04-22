@@ -1,10 +1,19 @@
-from suntime import Sun, SunTimeException
+pip install pytz
+pip install astral
+import pytz
+from datetime import datetime
+from astral.sun import sun
+from astral import LocationInfo
+city = LocationInfo("Salt Lake City")
+now = datetime.now() 
+s = sun(city.observer, date=now, tzinfo=city.timezone)
 
-latitude = 40.544983 
-longitude = -112.037132
 
-sun = Sun(latitude, longitude)
+from astral import LocationInfo
+city = LocationInfo("Salt Lake City")
 
-# Get today's sunrise and sunset in UTC
-today_sr = sun.get_sunrise_time()
-today_ss = sun.get_sunset_time()
+
+if now.replace(tzinfo=pytz.UTC) > s["sunrise"].replace(tzinfo=pytz.UTC):
+    print("working")
+else: print("broken")
+    
