@@ -7,13 +7,7 @@ from astral import LocationInfo
 city = LocationInfo("Salt Lake City")
 now = datetime.now() 
 s = sun(city.observer, date=now, tzinfo=city.timezone)
-
-
-from astral import LocationInfo
-city = LocationInfo("Salt Lake City")
-
-
-if now.replace(tzinfo=pytz.UTC) > s["sunrise"].replace(tzinfo=pytz.UTC):
-    print("working")
+if s["sunset"].replace(tzinfo=pytz.UTC)>now.replace(tzinfo=pytz.UTC) > s["sunrise"].replace(tzinfo=pytz.UTC):
+    print("cool")
 else: print("broken")
     
