@@ -1,3 +1,5 @@
+
+## if song["competitions"][0]["status"]['clock'] > 0:
 pip install pytz
 pip install astral
 import pytz
